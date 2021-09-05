@@ -17,28 +17,25 @@ def home_page():
 @app.route('/math', methods=['POST'])  # This will be called from UI
 
 def math_operation():
-    try:
-        if (request.method=='POST'):
-            num1 = float(request.form['num1'])
-            num2 = float(request.form['num2'])
-            num3 = float(request.form['num3'])
-            num4 = float(request.form['num4'])
-            num5 = float(request.form['num5'])
-            num6 = float(request.form['num6'])
-            num7 = float(request.form['num7'])
-            num8 = float(request.form['num8'])
-            num9 = float(request.form['num9'])
+    if (request.method=='POST'):
+        num1 = float(request.form['num1'])
+        num2 = float(request.form['num2'])
+        num3 = float(request.form['num3'])
+        num4 = float(request.form['num4'])
+        num5 = float(request.form['num5'])
+        num6 = float(request.form['num6'])
+        num7 = float(request.form['num7'])
+        num8 = float(request.form['num8'])
+        num9 = float(request.form['num9'])
 
-            model = pickle.load(open('lasso Linear Regression Homework Model for deployment.pickle', 'rb'))
-            scaler = pickle.load(open('Scaler for lasso Linear Regression Homework Model for deployment.pickle', 'rb'))
+        model = pickle.load(open('lasso Linear Regression Homework Model for deployment.pickle', 'rb'))
+        scaler = pickle.load(open('Scaler for lasso Linear Regression Homework Model for deployment.pickle', 'rb'))
 
-            test = [308.6, 1551, 42.8, 0, 0, 0, 0, 0, 0]
-            test = scaler.transform([test])
-            result = model.predict(test)
+        test = [308.6, 1551, 42.8, 0, 0, 0, 0, 0, 0]
+        test = scaler.transform([test])
+        result = model.predict(test)
+    return render_template('results.html',result=result)
 
-            return render_template('results.html',result=result)
-    except Exception as e:
-        return render_template('results.html',result=f"Something Went wrong {e}")
 """
 @app.route('/add')
 def add():
