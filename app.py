@@ -50,7 +50,7 @@ def add():
 
 if __name__ == '__main__':
     #app.run()
-    #port = int(os.getenv("PORT"))
+    port = int(os.getenv("PORT"))
     host = '0.0.0.0'
-    httpd = simple_server.make_server(host=host, port=5000, app=app)
+    httpd = simple_server.make_server(host=host, port=port, app=app)
     httpd.serve_forever()
